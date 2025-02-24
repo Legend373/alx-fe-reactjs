@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,9 +7,9 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import MainContent from './components/MainContent'
 import UserProfile from './components/UserProfile'
-
+import UserContext from './components/UserContext'
 function App() {
-  const [count, setCount] = useState(0)
+  const [{ userData }] = useContext(UserContext)
 
   return (
     <>
@@ -17,7 +17,7 @@ function App() {
       <Header />
       <MainContent />
       <Footer />
-      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+      <UserProfile name={userData.name} age={userData.age} bio={userData.bio} />
     </>
   )
 }
