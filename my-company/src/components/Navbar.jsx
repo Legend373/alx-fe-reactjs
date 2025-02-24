@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav style={styles.navbar}>
+        <nav style={{
+            background: "#333",
+            padding: "10px",
+        }}>
             <ul style={styles.navList}>
                 <li style={styles.navItem}>
                     <Link to="/" style={styles.link}>Home</Link>
@@ -24,10 +27,7 @@ function Navbar() {
 
 // Simple inline styles
 const styles = {
-    navbar: {
-        background: "#333",
-        padding: "10px",
-    },
+
     navList: {
         listStyle: "none",
         display: "flex",
