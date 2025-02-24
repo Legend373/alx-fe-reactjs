@@ -8,17 +8,14 @@ import Footer from './components/Footer'
 import MainContent from './components/MainContent'
 import UserProfile from './components/UserProfile'
 import UserContext from './components/UserContext'
-function App() {
-  const [{ userData }] = useContext(UserContext)
+function App(UserProfile) {
+  const [{ userData, setUserData }] = useContext(UserContext)
 
   return (
-    <>
-      <WelcomeMessage />
-      <Header />
-      <MainContent />
-      <Footer />
-      <UserProfile name={userData.name} age={userData.age} bio={userData.bio} />
-    </>
+    <UserContext.Provider value={{ userData }}>
+
+      {<UserProfile userData={userData} />}
+    </UserContext.Provider >
   )
 }
 
