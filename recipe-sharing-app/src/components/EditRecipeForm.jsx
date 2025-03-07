@@ -19,7 +19,7 @@ const EditRecipeForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form style={{ display: "flex", flexDirection: "column", marginTop: "30px", width: "500px" }} onSubmit={handleSubmit}>
             <input
                 type="text"
                 value={title}

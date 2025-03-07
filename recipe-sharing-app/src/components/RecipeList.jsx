@@ -4,6 +4,11 @@ import { useEffect } from "react";
 
 const RecipeList = () => {
     const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+    const addToFavorites = (recipe) => {
+        useRecipeStore((state) =>
+            state.addFavoriteRecipe(recipe)
+        );
+    };
 
 
 
@@ -15,8 +20,9 @@ const RecipeList = () => {
         ) : (
             <ul>
                 {filteredRecipes.map((recipe) => (
-                    <li style={{ textDecoration: "none" }} key={recipe.id}>
-                        <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+                    <li style={{ backgroundColor: "grey", textDecoration: "none", display: "flex", justifyContent: "space-between", width: "400px", padding: "10px" }} key={recipe.id}>
+                        <Link style={{ color: "black", fontSize: "20px", marginTop: "5px" }} to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+                        <button onClick={addToFavorites}>Add to Favorites</button>
                     </li>
                 ))}
             </ul>

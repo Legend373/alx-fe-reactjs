@@ -13,11 +13,11 @@ const RecipeDetails = () => {
     }
 
     return (
-        <div>
+        <div style={{ textAlign: "center" }}>
             <h1>{recipe.title}</h1>
             <p>{recipe.description}</p>
             {/* Edit form */}
-            <Link to={`/edit-recipe/${recipe.id}`} style={{ color: "blue", textDecoration: "underline" }}>
+            <Link style={{ backgroundColor: "black", padding: "5px", fontSize: "20px", color: "white", marginRight: "80px" }} to={`/edit-recipe/${recipe.id}`}>
                 Edit Recipe
             </Link>
 

@@ -17,7 +17,7 @@ const AddRecipeForm = () => {
 
     return (
         <form style={{ display: "flex", flexDirection: "column", marginTop: "40px" }} onSubmit={handleSubmit}>
-            <input style={{ padding: "10px", marginBottom: "20px", width: "220px" }}
+            <input style={{ padding: "10px", marginBottom: "20px", width: "440px" }}
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -28,7 +28,7 @@ const AddRecipeForm = () => {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
             />
-            <button style={{ width: "180px", marginLeft: "30px" }} type="submit">Add Recipe</button>
+            <button style={{ width: "180px", marginLeft: "130px" }} type="submit">Add Recipe</button>
         </form>
     );
 };
