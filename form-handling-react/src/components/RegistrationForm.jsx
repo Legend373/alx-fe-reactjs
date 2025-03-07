@@ -48,7 +48,7 @@ const RegistrationForm = () => {
         }
 
         // If any errors exist, set them and stop submission
-        if (username || email || password) {
+        if (newErrors.username || newErrors.email || newErrors.password) {
             setErrors(newErrors);
             return;
         }
@@ -63,7 +63,7 @@ const RegistrationForm = () => {
                 type="text"
                 name="username"
                 placeholder="Username"
-                value={username}
+                value={formData.username}
                 onChange={handleChange}
             />
             {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -72,7 +72,7 @@ const RegistrationForm = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={email}
+                value={formData.email}
                 onChange={handleChange}
             />
             {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                value={password}
+                value={formData.password}
                 onChange={handleChange}
             />
             {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
