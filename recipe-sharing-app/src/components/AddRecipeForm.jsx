@@ -3,30 +3,32 @@ import { useRecipeStore } from './recipeStore';
 
 const AddRecipeForm = () => {
     const addRecipe = useRecipeStore(state => state.addRecipe);
+    const recipes = useRecipeStore(state => state.recipes)
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addRecipe({ id: Date.now(), title, description });
+        addRecipe({ id: Date.now(), title: title, description: description });
         setTitle('');
         setDescription('');
+        console.log(recipes)
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <form style={{ display: "flex", flexDirection: "column", marginTop: "40px" }} onSubmit={handleSubmit}>
+            <input style={{ padding: "10px", marginBottom: "20px", width: "220px" }}
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
             />
-            <textarea
+            <textarea style={{ padding: "20px", marginBottom: "20px" }}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
             />
-            <button type="submit">Add Recipe</button>
+            <button style={{ width: "180px", marginLeft: "30px" }} type="submit">Add Recipe</button>
         </form>
     );
 };

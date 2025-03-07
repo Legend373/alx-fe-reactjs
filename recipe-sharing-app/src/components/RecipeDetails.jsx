@@ -1,16 +1,25 @@
 import { useRecipeStore } from './recipeStore';
+import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom"
+import DeleteRecipeButton from "./DeleteRecipeButton"
 
-const RecipeDetails = ({ recipeId }) => {
+const RecipeDetails = () => {
+    const { recipeId } = useParams();
     const recipe = useRecipeStore(state =>
-        state.recipes.find(recipe => recipe.id === recipeId)
+        state.recipes.find(recipe => recipe.id === Number(recipeId))
     );
+    if (!recipe) {
+        return <p>Recipe not found</p>; // Handle missing recipe gracefully
+    }
 
     return (
         <div>
             <h1>{recipe.title}</h1>
             <p>{recipe.description}</p>
             {/* Edit form */}
-            <EditRecipeForm recipe={recipe} />
+            <Link to={`/edit-recipe/${recipe.id}`} style={{ color: "blue", textDecoration: "underline" }}>
+                Edit Recipe
+            </Link>
 
             {/* Delete button */}
             <DeleteRecipeButton recipeId={recipe.id} />

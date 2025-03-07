@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useRecipeStore } from "./recipeStore";
+import { useParams } from "react-router-dom";
 
-const EditRecipeForm = ({ recipe }) => {
+const EditRecipeForm = () => {
+    const { recipeId } = useParams();
+    const recipe = useRecipeStore(state =>
+        state.recipes.find(recipe => recipe.id === Number(recipeId))
+    );
+
+
     const [title, setTitle] = useState(recipe.title);
     const [description, setDescription] = useState(recipe.description);
     const updateRecipe = useRecipeStore((state) => state.updateRecipe);
