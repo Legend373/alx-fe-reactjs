@@ -35,21 +35,21 @@ const RegistrationForm = () => {
                 type="text"
                 name="username"
                 placeholder="Username"
-                value={formData.username}
+                value={username}
                 onChange={handleChange}
             />
             <input
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={formData.email}
+                value={email}
                 onChange={handleChange}
             />
             <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                value={formData.password}
+                value={password}
                 onChange={handleChange}
             />
             <button type="submit">Register</button>
