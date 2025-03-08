@@ -1,4 +1,5 @@
 // src/components/Profile.jsx
+// src/components/Profile.jsx
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
