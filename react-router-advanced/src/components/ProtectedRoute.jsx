@@ -1,10 +1,11 @@
 // src/components/ProtectedRoute.jsx
-import React, { useContext } from "react";
+// src/components/ProtectedRoute.jsx
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import useAuth from "../hooks/useAuth"; // Import the useAuth hook
 
 const ProtectedRoute = () => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useAuth(); // Use the useAuth hook
 
     // If not authenticated, redirect to the login page
     if (!isAuthenticated) {
