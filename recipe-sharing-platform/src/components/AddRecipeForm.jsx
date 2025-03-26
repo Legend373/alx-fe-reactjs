@@ -67,4 +67,4 @@ const AddRecipeForm = () => {
     );
 };
 
-export { RecipeDetail, AddRecipeForm };
+export default AddRecipeForm;
