@@ -1,32 +1,49 @@
 import { useState } from "react";
+
 const AddRecipeForm = () => {
     const [title, setTitle] = useState("");
     const [ingredients, setIngredients] = useState("");
     const [steps, setSteps] = useState("");
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let tempErrors = {};
+
+        if (title.trim().length < 3) {
+            tempErrors.title = "Title must be at least 3 characters long.";
+        }
+
+        const ingredientList = ingredients.split("\n").map(item => item.trim()).filter(item => item !== "");
+        if (ingredientList.length < 2) {
+            tempErrors.ingredients = "At least two ingredients are required.";
+        }
+
+        if (steps.trim().length < 10) {
+            tempErrors.steps = "Instructions must be at least 10 characters long.";
+        }
+
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const ingredientList = ingredients.split("\n").filter(item => item.trim() !== "");
+        if (!validate()) return;
 
-        if (!title || ingredientList.length < 2 || !steps) {
-            setError("All fields must be filled out, and at least two ingredients are required.");
-            return;
-        }
-
-        setError("");
+        const ingredientList = ingredients.split("\n").map(item => item.trim()).filter(item => item !== "");
         const newRecipe = { title, ingredients: ingredientList, steps };
+
         console.log("New Recipe Submitted:", newRecipe);
         setTitle("");
         setIngredients("");
         setSteps("");
+        setErrors({});
     };
 
     return (
         <div className="container mx-auto p-4">
             <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Add a New Recipe</h2>
-                {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-semibold">Title</label>
@@ -35,8 +52,8 @@ const AddRecipeForm = () => {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            required
                         />
+                        {errors.title && <p className="text-red-500">{errors.title}</p>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-semibold">Ingredients (each on a new line)</label>
@@ -45,18 +62,18 @@ const AddRecipeForm = () => {
                             onChange={(e) => setIngredients(e.target.value)}
                             className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                             rows="4"
-                            required
                         ></textarea>
+                        {errors.ingredients && <p className="text-red-500">{errors.ingredients}</p>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-semibold">Instructions</label>
                         <textarea
-                            value={instructions}
-                            onChange={(e) => setInstructions(e.target.value)}
+                            value={steps}
+                            onChange={(e) => setSteps(e.target.value)}
                             className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                             rows="4"
-                            required
                         ></textarea>
+                        {errors.steps && <p className="text-red-500">{errors.steps}</p>}
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
                         Submit Recipe
