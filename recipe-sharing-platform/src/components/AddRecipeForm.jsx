@@ -2,24 +2,24 @@ import { useState } from "react";
 const AddRecipeForm = () => {
     const [title, setTitle] = useState("");
     const [ingredients, setIngredients] = useState("");
-    const [instructions, setInstructions] = useState("");
+    const [steps, setSteps] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const ingredientList = ingredients.split("\n").filter(item => item.trim() !== "");
 
-        if (!title || ingredientList.length < 2 || !instructions) {
+        if (!title || ingredientList.length < 2 || !steps) {
             setError("All fields must be filled out, and at least two ingredients are required.");
             return;
         }
 
         setError("");
-        const newRecipe = { title, ingredients: ingredientList, instructions };
+        const newRecipe = { title, ingredients: ingredientList, steps };
         console.log("New Recipe Submitted:", newRecipe);
         setTitle("");
         setIngredients("");
-        setInstructions("");
+        setSteps("");
     };
 
     return (
