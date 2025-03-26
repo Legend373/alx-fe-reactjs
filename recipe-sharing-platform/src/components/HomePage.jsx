@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import data from "../data.json";
-import { NavLink } from "react-router";// Import JSON directly
+import { NavLink } from "react-router-dom";// Import JSON directly
 import RecipeDetail from "./RecipeDetail";
 
 const HomePage = () => {
